@@ -42,8 +42,7 @@ def rename_cols(df):
 
 
 def make_attendance(df: pd.DataFrame):
-    adf = df.dropna(subset=['reg_voters_17', 'votes_17', 'reg_voters_13', 'votes_13'])
-    adf = adf.assign(
+    adf = df.assign(
         attendance_13=lambda row: 100 * row['votes_13'] / row['reg_voters_13'],
         attendance_17=lambda row: 100 * row['votes_17'] / row['reg_voters_17']
     )
