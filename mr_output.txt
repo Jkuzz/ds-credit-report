@@ -1,0 +1,14 @@
+Jihomoravský kraj       63.145469892704746_1052
+Jihočeský kraj          64.26533397893476_1255
+Karlovarský kraj        55.139672710155246_343
+Kraj Vysočina           65.85675347300607_1136
+Královéhradecký kraj    63.65791133904127_924
+Liberecký kraj          60.84200874988479_494
+Moravskoslezský kraj    58.33297538498513_946
+Olomoucký kraj          61.60778259488001_920
+Pardubický kraj         63.514117299732554_783
+Plzeňský kraj           62.70393293264309_902
+Praha                   68.69644373098124_1100
+Středočeský kraj        64.35450621197724_2053
+Zlínský kraj            64.03226031138183_683
+Ústecký kraj            55.925647858836044_949

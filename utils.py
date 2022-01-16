@@ -1,5 +1,6 @@
 import pandas as pd
 import seaborn as sns
+from sklearn.model_selection import cross_val_score
 
 
 def make_heatmap(df, cols, rows, title):
@@ -48,3 +49,33 @@ def make_attendance(df: pd.DataFrame):
     )
     return adf
 
+
+def test_add_feature(df, model_type, y, known_features, new_feature=None):
+    kf = known_features
+    if new_feature:
+        kf.append(new_feature)
+    new_x = df[kf]
+    new_model = model_type().fit(new_x, y)
+    n_score = cross_val_score(new_model, new_x, y, cv=4).mean()
+    return n_score
+
+
+def optimise_features(df, model_type, targets, initial_features, features_to_try, debug_print=False):
+    features = initial_features
+    y = df[targets]
+    old_score = test_add_feature(df, model_type, y, features)
+    print(f'Initial score with only 2013 attendance: {old_score}')
+    for current_feature in features_to_try:
+        new_score = test_add_feature(df, model_type, y, features, current_feature)
+        if new_score > old_score:
+            if debug_print:
+                print(f'Adding feature {current_feature}, new score is {new_score}')
+            features.append(current_feature)
+            old_score = new_score
+        elif debug_print:
+            print(f'Ignoring feature {current_feature}')
+
+    print(f'Obtained score {old_score}')
+    if debug_print:
+        print(f'Selected features: {features}')
+    return old_score, features
